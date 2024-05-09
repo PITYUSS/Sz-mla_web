@@ -99,3 +99,7 @@ dist
 
 # vuepress build output
 ... (30 lines left)
+
+database.db 
+
+sessions.db 
