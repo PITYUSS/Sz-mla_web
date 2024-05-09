@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PaySmart - Eladási előzmények</title>
+    <link rel="stylesheet" href="css/services.css">
+    <link
+    rel="stylesheet"
+    href="https://use.fontawesome.com/releases/v5.14.0/css/all.css"
+    integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc"
+    crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="favicon_io/favicon.ico" type="image/x-icon">
+</head>
+<body>
+  <!-- navbar -->
+  <%- include('./navbar_home') %>
+     <!-- Hero Section -->
+     <div class="hero" id="home">
+        <div class="hero__container">
+          <h1 class="hero__heading">Eladási előzmények</h1>
+          <p class="hero__description">Vizsgálja és ellőrizze eladásait</p>
+          <button class="main__btn"><a href="/register">Regisztrálj</a></button>
+        </div>
+      </div>
+  
+      <!-- Scale your business Section -->
+      <div class="main" id="about">
+        <div class="main__container">
+          <div class="main__img--container">
+            <img class="main__img--card" src="images/scale.svg" alt="pic" id="main__img">
+          </div>
+          <div class="main__content">
+            <h1>Gyarapítsa vállakozását</h1>
+            <p>Kövesse nyomon eladásit, pontosan és hibamentesen</p>
+          </div>
+        </div>
+      </div>
+  
+     
+  
+      <!-- Track and analyze Section -->
+      <div class="main" id="sign-up">
+        <div class="main__container">
+          <div class="main__content">
+            <h1>Kövesse nyomon és elemezze</h1>
+            <p>Tekintse meg az összes értékesítési és beszerzési rendelés teljes előzménynaplóját, beleértve a dátumot, az azonosítót, az árat és a mennyiséget a készletmozgási jelentés segítségével.</p>
+          </div>
+          <div class="main__img--container">
+            <img class="main__img--card" src="images/analyze.svg" alt="pic" id="main__img">
+            </div>
+          </div>
+        </div>
+      </div>
+
+    <!-- Footer Section -->
+    <%- include('./footer') %>
+   
+    </body>
+</html>

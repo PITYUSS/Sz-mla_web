@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PaySmart - Elérhetőség</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css"
+        integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="favicon_io/favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+    <!-- navbar -->
+    <%- include('./navbar_home') %>
+    <!-- MAIN -->
+
+    <body>
+        <div class="main__c">
+            <div class="main__con">
+                <h1>Mindegy, hogy kérdései, észrevételei vannak, vagy csak köszönni szeretne, örömmel fogadjuk!</h1>
+                <img src="images/pic5.svg" alt="pic" id="main__img2">
+                <div class="main__contact">
+                    <h2>Iroda címe</h2>
+                    <p>...</p>
+                    <h2>Telefonszám</h2>
+                    <p>...</p>
+                    <h2>Támogatás és siker</h2>
+                    <p> Termékproblémákat tapasztal? Ne aggódjon, írjon nekünk egy e-mailt a support@paysmart.com címre, és amint tudunk, válaszolunk a megoldásra.</p>
+
+
+                </div>
+                <div class="main__content--submit">
+                    <fieldset>
+                        <label for="first-name">Név: <input id="first-name" name="first-name" type="text"
+                                required /></label>
+                        <label for="email"> Email: <input id="email" name="email" type="email"
+                                required /></label>
+                        <label for="last-name">Tárgy: <input id="last-name" name="last-name" type="text"
+                                required /></label>
+                    </fieldset>
+                    </label>
+                    <label for="bio">Üzenet:
+                        <textarea id="bio" name="bio" rows="3" cols="30"></textarea>
+                    </label>
+                    </fieldset>
+                    <input type="submit" value="Beküldés" />
+                    </form>
+                </div>
+            </div>
+        </div>
+    </body>
+
+
+
+    <!-- Footer Section -->
+    <%- include('./footer') %>
+    <script src="app.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://unpkg.com/jspdf-invoice-template@1.4.0/dist/index.js"></script>
+  <title>PaySmart - Eladások</title>
+  <link rel="stylesheet" href="css/stylesInv.css">
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css"
+    integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
+  <link rel="icon" href="favicon_io/favicon.ico" type="image/x-icon">
+  <script src="https://unpkg.com/jspdf-invoice-template@1.4.3/dist/index.js"></script>
+
+  
+</head>
+
+<body>
+  <!--Vertical Navbar-->
+  <%- include('./navbar_logged_in') %>
+
+  <div class="main__container">
+    <h1>Eladások</h1>
+
+    <!-- end of the search bar  -->
+
+    <div class="ui fluid container">
+      <table class="ui inverted violet table table-bordered">
+        <thead>
+          <tr>
+            <th>Számla ID</th>
+            <th>Dátum</th>
+            <th>Ár</th>
+            <th>PDF</th>
+          </tr>
+        </thead>
+        <tbody class="ui table-bordered">
+          <% sales.forEach(function(sale){ %>
+            <tr>
+              <td>
+                <%= sale.InvoiceId %>
+              </td>
+              <td>
+                <% 
+                var timediff = new Date().getTimezoneOffset() * 60000;
+                var time = new Date(sale.Created * 1000 - timediff); 
+                var formattedTime = time.toLocaleString(); 
+                %>
+                <%= formattedTime %>
+              </td>
+              <td>
+                <%= sale.TotalPrice %> €
+              </td>
+              <td>
+                <a onclick="getPdf(<%= sale.InvoiceId %>)" class="button">PDF</a>
+              </td>
+            </tr>
+            <% }); %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Semnatic-UI Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+</body>
+
+<script>
+  function getPdf(id) {
+    $.ajax({
+      method: "GET",
+      url: "/invoice-pdf-data/" + id,
+      dataType: "json",
+      success: function (data) {
+        data.outputType = jsPDFInvoiceTemplate.OutputType.Save;
+        jsPDFInvoiceTemplate.default(data);
+      },
+      error: function (err, status, thrown) {
+        console.log(thrown);
+      }
+    });
+  }
+</script>
+
+</html>

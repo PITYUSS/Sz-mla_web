@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="css/stylesInv.css">
+  <title>PaySmart - Kategóriák</title>
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link
+    rel="stylesheet"
+    href="https://use.fontawesome.com/releases/v5.14.0/css/all.css"
+    integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc"
+    crossorigin="anonymous">
+    <link rel="icon" href="favicon_io/favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+  <!--Vertical Navbar-->
+  <%- include('./navbar_logged_in') %>
+  <div class="main__container">
+  <h1>Kategóriák</h1>
+
+  <!-- Button trigger modal -->
+  <div class="btn__newItem">
+    <button type="button" class="btn btn-lg btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+      Új kategória <i class="plus circle icon"></i></span>
+    </button>
+  </div>
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Új kategória</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="formGroupExampleInput" class="form-label">Írj be új kategóriát</label>
+            <form action="/addcategory" method="POST">
+              <input type="text" class="form-control1" id="formGroupExampleInput" name="new">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Bezárás</button>
+          <button type="submit" class="btn btn-primary" value="Hello">Beküldés</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br>
+
+  <div class="ui card">
+    <table class="ui inverted violet table table-bordered" >
+      <thead>
+        <tr>
+          <h1>Kategóriák</h1>
+        </tr>
+      </thead>
+      <tbody>
+        <% category.forEach(function(order){ %>
+          <tr>
+            <td>
+              <h2>
+                <%= order.CategoryName %>
+              </h2> &emsp;<form action="/deletecategory" method="POST"><input type="hidden" name="deleteid"
+                  value="<%= order.CategoryId %>">
+                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+              </form>
+            </td>
+          </tr>
+          <% }); %>
+      </tbody>
+    </table>
+
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous">
+      </script>
+</div>
+</body>
+
+</html>

@@ -1,0 +1,359 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Kumbh Sans', sans-serif;
+
+}
+
+/* navbar */
+
+.navbar {
+    background: #fff;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+
+}
+
+.navbar__container {
+    display: flex;
+    justify-content: space-between;
+    height: 80px;
+    z-index: 1;
+    width: 100%;
+    max-width: flex;
+    margin-right: auto;
+    margin-left: auto;
+    padding-right: 50px;
+    padding-left: 50px;
+    box-shadow: 0px 0px 20px 0px #c8c8c8;
+
+}
+
+#navbar__logo{
+    background-color: #ff8177;
+    background-image: linear-gradient(to top, #ff0844 0% , #ffb199 100%);
+    background-size: 100%;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -moz-text-fill-color: transparent;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 2rem;
+}
+
+
+
+.fas.fa-calculator{
+    margin-right: 0.5rem;
+
+}
+
+.navbar__menu{
+    display: flex;
+    align-items: center;
+    list-style: none;
+    text-align: center;
+}
+
+.navbar__item{
+    height: 80px;
+
+}
+
+.navbar__links {
+    color: #131313;
+    display: flex ;
+    align-items:  center;
+    justify-content: center;
+    text-decoration: none;
+    padding: 0 1rem;
+    height: 100%;
+}
+
+.navbar__btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 1rem;
+    width: 100%;
+}
+
+.button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    padding: 10px 20px;
+    height: 100%;
+    width: 100%;
+    border: none;
+    outline: none;
+    border-radius: 4px;
+    background: #f77062;
+    color: #fff;
+    width: auto;
+    margin-left: 5px;
+    font-size: 1.2rem;
+}
+
+.button:hover {
+    background: #4837ff;
+    transition:  all 0.3 ease;
+
+}
+
+.navbar__links:hover {
+    color: #f77062;
+    transition:  all 0.3 ease;
+
+}
+
+.navbar__dropdown {
+    display: none;
+    position:fixed;
+    background-color: #fff;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 999;
+    list-style-type: none;
+    padding: 20px;
+  }
+
+
+
+  .navbar__item:hover .navbar__dropdown {
+    display: block;
+  }
+
+.navbar__services--links {
+    color: #f77062;
+    transition:  all 0.3 ease;
+    cursor: pointer;
+    display: flex;
+    align-items:  center;
+    justify-content: center;
+    text-decoration: none;
+    height: 100%;
+    padding-bottom: 10px;
+    height: 6rem;
+}
+
+.navbar__services--links:hover {
+    color: #4837ff;
+    transition:  all 0.3 ease;
+
+}
+
+.navbar__services--links p {
+    color: #131313;
+    width: 70%;
+    border: 1px solid #ccc; /* Add a solid border at the bottom */
+    padding: 10px;
+    border-radius: 15px;
+}
+
+.navbar__services--links h1 {
+    width: 30%;
+    margin: 5px 0px ;
+    
+    
+}
+
+/* main */
+
+
+.navbar__line {
+    width: 100%; 
+    height: 1px;
+    background-color: black; 
+  }
+
+.wrapper {
+    width: 100%;
+    background: #ff8177;
+    color: #fff;
+    border-radius: 10px;
+    padding: 30px 40px 30px 40px;
+}
+
+.wrapper h1 { 
+    font-size: 36px;
+    text-align: center;
+}
+
+.wrapper .input-box {
+    position: relative;
+    width: 100%;
+    height: 50px;
+    margin: 30px 0;
+}
+
+.input-box input {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    border: 2px solid rgba(255,255,255, 0.2);
+    border-radius: 40px;
+    font-size: 16px;
+    color: #fff;
+    padding: 20px 45px;
+}
+
+.input-box input::placeholder {
+    color: #fff;
+}
+
+.input-box i {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 20px;
+}
+
+.wrapper .remember-forgot {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14.5px;
+    margin: -15px 0 15px;
+}
+
+.remember-forgot label input {
+    accent-color: #fff;
+    margin-right: 3px;
+}
+
+.remember-forgot a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.remember-forgot a:hover {
+    text-decoration: underline;
+}
+
+.wrapper .btn {
+    width: 100%;
+    height: 45px;
+    background-color: #fff;
+    border: none;
+    outline: none;
+    border-radius: 40px;
+    box-shadow: 0 0 10px rgba(0,0,0, 0.1);
+    cursor: pointer;
+    font-size: 16px;
+    color: #333;
+    font-weight: 600;
+}
+
+.wrapper .register-link {
+    font-size: 14.5px;
+    text-align: center;
+    margin: 20px 0 15px;
+}
+
+.register-link p a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.register-link p a:hover {
+    text-decoration: underline;
+}
+
+
+
+
+.main{
+    background-color: #fff;
+    margin-top: 7rem;
+}
+
+.main__container{
+   display: grid;
+   grid-template-columns: 1fr 1fr;
+   align-items: center;
+   justify-self: center;
+   margin: 0 auto;
+   height: auto;
+   background-color: #fff;
+   z-index: 1;
+   width: 100%;
+   max-width: 1300px;
+   padding-right: 50px;
+   padding-left: 50px;
+   
+}
+
+.main__content h2 {
+    font-size: 2rem;
+    background-color: #ff8177;
+    background-image: linear-gradient(to top,#b721ff 0% , #21d4fd 100%);
+    background-size: 100%;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -moz-text-fill-color: transparent;
+    padding-right: 50px;
+}
+
+
+
+#navbar__logo1{
+    background-color: #ff8177;
+    background-image: linear-gradient(to top, #ff0844 0% , #ffb199 100%);
+    background-size: 100%;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -moz-text-fill-color: transparent;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 3rem;
+    padding-right: 50px;
+    padding-bottom: 30px;
+}
+
+.fas.fa-calculator{
+    margin-right: 0.5rem;
+
+}
+
+.main__content {
+    position: relative;
+    text-align: justify;
+    margin-top: 1rem;
+    font-size: 25px;
+    font-weight: 700;
+    display: inline-block;
+    width: 100%;
+    padding-bottom: 260px;
+    
+}
+
+.main__content__2 {
+    position: relative;
+    text-align: justify;
+    margin-top: 1rem;
+    font-size: 25px;
+    font-weight: 700;
+    display: inline-block;
+    width: 100%;
+    padding-bottom: 260px;
+    
+}

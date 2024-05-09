@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PaySmart - Bejelentkezés</title>
+    <link rel="stylesheet" type="text/css" href="/css/login.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link
+    rel="stylesheet"
+    href="https://use.fontawesome.com/releases/v5.14.0/css/all.css"
+    integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc"
+    crossorigin="anonymous">
+    <link rel="icon" href="favicon_io/favicon.ico" type="image/x-icon">
+</head>
+<body>
+    <div class="main">
+        <div class="main__container">
+            <div class="main__content">
+                <a href="/" id="navbar__logo1">  <i class="fas fa-calculator"></i>PaySmart </a>
+                <h2>Gyors és egyszerű online könyvelés 
+                    <br> és számlázó szoftver! </h2>
+            </div>
+            <div class="wrapper">
+            <form action="/login" method="post">
+                <h1>Bejeletnekzés</h1>
+                <div class="input-box">
+                    <input type="text" name="text" placeholder="Felhasználónév" required>
+                    <i class='bx bxs-user'></i>
+                </div>
+                <div class="input-box">
+                <input type="password" name="password" placeholder="Jelszó" required>
+                <i class='bx bxs-lock' ></i>
+                </div>
+
+                
+                <button type="submit" class="btn">Bejelentkezés</button>
+
+                <div class="register-link">
+                    <p>Nincs felhasználód?<a href="/register"> Regisztrálj</a></p>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>

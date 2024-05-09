@@ -1,0 +1,16 @@
+<script>
+  function addAlert(msg) {
+    let docuement = document.getElementById('alert-container');
+    let alert = document.createElement('div');
+    alert.classList.add('custom-alert');
+    alert.setAttribute('role', 'alert');
+    alert.innerHTML = `
+      <strong>${msg}</strong>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    `;
+    docuement.appendChild(alert);
+    setTimeout(() => {
+      alert.querySelector('.btn-close').click();
+    }, 5 * 1000);
+  }
+</script>

@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="css/stylesInv.css">
+  <title>PaySmart - Új áru leltárhoz adás</title>
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css"
+    integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
+  <link rel="icon" href="favicon_io/favicon.ico" type="image/x-icon">
+  
+</head>
+
+
+<body>
+  <!-- navbar -->
+  <%- include('./navbar_logged_in') %>
+
+  <!-- Page content holder -->
+  <div class="main__container">
+    <!-- Page content -->
+
+    <h1>Új áru leltárhoz adás</h1>
+    <div class="ui fluid container">
+      <form action="/submitstock" method="POST">
+        <table class="ui inverted pink celled table tbl_code_with_mark" id="myTable">
+          <thead>
+            <tr>
+              <th>ID</th>
+                <th>Név</th>
+                <th>Kategória</th>
+                <th>Márka név</th>
+                <th>Méret</th>
+                <th>Ár</th>
+                 <th>Mennyiség</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+              <td class="table-danger">
+                <div class="form-floating">
+                  <input type="text" class="form-control" id="itemid" name="itemid" placeholder="ID" required>
+                </div>
+              </td>
+              <td class="table-primary">
+                <div class="form-floating">
+                  <input type="text" class="form-control" id="itemname" name="itemName" placeholder="Áru név"
+                    required>
+                </div>
+              </td>
+              <td class="table-warning">
+                <div class="form-floating">
+                  <select class="form-select" aria-label="Default select example" name="category" id="category"
+                    required>
+                    <option name="default" value="-1" selected="selected">
+                      - Nincs kiválasztva -
+                    </option>
+                    <% category.forEach(function(category){ %>
+                      <option name="<%= category.CategoryName %>" value="<%= category.CategoryId %>">
+                        <%= category.CategoryName %>
+                      </option>
+                      <% }); %>
+                  </select>
+                </div>
+              </td>
+              <td class="table-warning">
+                <div class="form-floating">
+                  <select class="form-select" aria-label="Default select example" name="brand" id="brand" required>
+                    <option name="default" value="-1" selected="selected">
+                      - Nincs kiválasztva -
+                    </option>
+                    <% brand.forEach(function(brand){ %>
+                      <option name="<%= brand.BrandName %>" value="<%= brand.BrandId %>">
+                        <%= brand.BrandName %>
+                      </option>
+                      <% }); %>
+                  </select>
+                </div>
+              </td>
+              <td class="table-warning">
+                <div class="form-floating">
+                  <select class="form-select" aria-label="Default select example" name="size" id="size" required>
+                    <option name="default" value="-1" selected="selected">
+                      - Nincs kiválasztva -
+                    </option>
+                    <% size.forEach(function(size){ %>
+                      <option name="<%= size.SizeName %>" value="<%= size.SizeId %>">
+                        <%= size.SizeName %>
+                      </option>
+                      <% }); %>
+                  </select>
+                </div>
+              </td>
+              <td class="table-success">
+                <div class="form-floating">
+                  <input type="number" step="0.01" class="form-control" name="amount" placeholder="Enter Price" value="0" min="0"
+                    id="amount" required>
+                </div>
+              </td>
+
+              <td class="table-success">
+                <div class="form-floating">
+                  <input type="number" class="form-control" name="quantity" placeholder="Enter Quantity" value="1"
+                    min="1" id="quantity" required>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+
+
+        </table>
+        <div class="btn__newItem">
+          <button type="submit" class="ui teal submit button">Hozzáadás</button>
+        </div>
+      </form>
+
+
+    </div>
+  </div>
+
+
+</body>
+
+</html>

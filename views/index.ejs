@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PaySmart - Főoldal</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css"
+        integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="/favicon_io/favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+    <!-- navabr -->
+    <%- include('./navbar_home') %>
+    <!--Hero section-->
+    <div class="main">
+        <div class="main__container">
+            <div class="main__content">
+                <h1>Könnyű és gyors online </h1>
+                <h2>Számlakészítő weboldal</h2>
+                <p>Üdvözöljük a PaySmart világában! Célunk, hogy egyszerűvé tegyük ügyfeleink számára a számlakészítést és készleteik hatékony kezelését. A PaySmart platform lehetővé teszi, hogy gyorsan és könnyedén hozzon létre számlákat, miközben egyszerűen ellenőrizheti készleteit.</p>
+                <button class="main__btn"><a href="/register">Regisztrálj</a></button>
+            </div>
+            <div class="main__image--container">
+                <img src="images/pic3.svg" alt="pic" id="main__img">
+            </div>
+        </div>
+    </div>
+
+    <!-- Services Section -->
+    <div class="services">
+        <h1>Szolgáltatásaink ügyfeleink részére</h1>
+        <div class="services__container">
+            <div class="services__card">
+                <h2>Eladási előzmények</h2>
+                <p>Vizsgálja és ellnőrizze eladásait</p>
+                <a href="/Sales&Invoicing"><button>Eladások</button></a>
+            </div>
+            <div class="services__card">
+                <h2>Számlák készítése</h2>
+                <p>Készítsen számlákat gyorsan és egyszerűen</p>
+                <a href="/Accounting"><button>Számlák</button></a>
+            </div>
+            <div class="services__card">
+                <h2>Leltár ellenőrzés</h2>
+                <p>Ellenőrzi és töltse fel készleteit</p>
+                <a href="/Inventory"><button>Leltár</button></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="main">
+        <div class="main__container">
+            <div class="main__content">
+                <h4>Önnek, és az összes méretű vállakozásnak </h4>
+                <p>Szabadítsa fel növekedési potenciálját</p>
+                <button class="main__btn"><a href="/register">Regisztrálj</a></button>
+            </div>
+            <div class="container">
+                <div class="wrapper">
+                    <img src="images/img1.jpg">
+                    <img src="images/img2.jpg">
+                    <img src="images/img3.jpg">
+                    <img src="images/img4.jpg">
+                    <img src="images/img1.jpg">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <%- include('./footer') %>
+    <script src="app.js"></script>
+</body>
+
+</html>

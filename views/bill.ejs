@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="hu">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"
+      integrity="sha512-2ImtlRlf2VVmiGZsjm9bEyhjGW4dU7B6TNwh/hx/iSByxNENtj3WVE6o/9Lj4TJeVXPi4bnOIMXFIJJAeufa0A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css"
+      integrity="sha512-nMNlpuaDPrqlEls3IX/Q56H36qvBASwb3ipuo3MxeWbsQB1881ox0cRv7UPTgBlriqoynt35KjEwgGUeUXIPnw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <script src="https://unpkg.com/jspdf-invoice-template@1.4.3/dist/index.js"></script>
+    <title>PaySmart - Számlázás</title>
+    <link rel="stylesheet" href="css/stylesInv.css" />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.14.0/css/all.css"
+      integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc"
+      crossorigin="anonymous"
+    />
+    <link rel="icon" href="favicon_io/favicon.ico" type="image/x-icon" />
+  </head>
+
+  <body>
+    <!--Vertical Navbar-->
+    <%- include('./navbar_logged_in') %>
+    <!-- End vertical navbar -->
+
+    <!-- Page content -->
+    
+    <div class="main__container">
+      <h1>Számlázás</h1>
+      <%- include('./alert_container') %>
+      <br />
+      <div class="btn__newItem">
+        <select id="add_brand">
+          <option name="default" value="-1" selected="selected">-</option>
+          <% items.forEach(function(item){ %>
+          <option name="<%= item.ItemName %>" value="<%= item.ItemId %>">
+            <%= item.ItemName %>
+          </option>
+          <% }); %>
+        </select>
+      </div>
+      <br />
+      <div class="ui fluid container">
+        <form action="/submitbill" method="POST">
+          <table
+            class="ui inverted pink celled table celled tbl_code_with_mark"
+            id="myTable"
+          >
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Név</th>
+                <th>Kategória</th>
+                <th>Márka név</th>
+                <th>Méret</th>
+                <th>Ár</th>
+                 <th>Mennyiség</th>
+              </tr>
+            </thead>
+
+            <tbody id="items-tbody" class="testforborder"></tbody>
+          </table>
+          <div class="btn__newItem">
+            <button
+              class="ui green submit button"
+              type="button"
+              onclick="downloadInvoice()"
+            >
+              Számlázás
+            </button>
+          </div>
+        </form>
+
+        <!-- <div class="card text-dark">
+        <h4 class="ui_horizontal_divider_header">
+          <i class="rupee sign icon"></i>
+          TOTAL CART VALUE
+        </h4>
+        <div class="card-body">
+          <div class="form-floating">
+            <input type="number" class="form-control" id="total" name="total" value=0 required disabled>
+          </div>
+        </div>
+      </div> -->
+      </div>
+    </div>
+    <script>
+      function addRow(object) {
+        let itemIds = document.querySelectorAll(".ItemId");
+        for (let i = 0; i < itemIds.length; i++) {
+          let id = itemIds[i].getAttribute("product_id");
+          if (id == object.ItemId) {
+            return;
+          }
+        }
+
+        let tbody = document.getElementById("items-tbody");
+        let tr = document.createElement("tr");
+
+        for (let key in object) {
+          let td = document.createElement("td");
+          td.className = key;
+          td.setAttribute("product_id", object[key]);
+          if (key == "Quantity") {
+            let input = document.createElement("input");
+            input.type = "number";
+            input.name = key + 1;
+            input.class = key;
+            input.min = 1;
+            input.value = 1;
+            input.max = object[key];
+            input.required = true;
+            td.appendChild(input);
+          } else {
+            td.innerHTML = object[key];
+          }
+          tr.appendChild(td);
+        }
+        tbody.appendChild(tr);
+      }
+      
+      $(document).ready(function ($) {
+        $("#add_brand").select2({
+          placeholder: "Select an Item",
+          allowClear: true,
+        });
+
+        $("#add_brand").on("change", function (ev) {
+          let value = ev.target.value;
+          let name = ev.target.name;
+          if (value == "-1" || value == "") {
+            return;
+          }
+          $.getJSON("/getitem/" + value, function (data) {
+            addRow(data);
+          });
+        });
+      });
+    </script>
+
+    <%- include('./alert_container_script') %>
+
+    <script>
+      function downloadInvoice() {
+        getSampleData();
+      }
+
+      function getSampleData() {
+        let trs = document.getElementsByTagName("tr");
+        let headers = [];
+
+        trs[0].querySelectorAll("th").forEach((th) => {
+          headers.push({ title: th.innerText });
+        });
+
+        let items_arr = [];
+
+        for (let i = 0; i < trs.length; i++) {
+          let tr = trs[i];
+          let items = tr.getElementsByTagName("td");
+
+          if (items.length == 0) {
+            continue;
+          }
+
+          let row = [];
+          for (let j = 0; j < items.length; j++) {
+            let name = items[j].innerText;
+
+            let input = items[j].getElementsByTagName("input");
+            if (input.length != 0) {
+              if (input[0].nodeName == "INPUT") {
+                name = input[0].value;
+              }
+            }
+            row.push(name);
+          }
+          items_arr.push(row);
+        }
+        let ajax_data = { items: [] };
+
+        for (let i = 0; i < items_arr.length; i++) {
+          let item = items_arr[i];
+          ajax_data.items.push({
+            ItemId: item[0],
+            ItemName: item[1],
+            Category: item[2],
+            Brand: item[3],
+            Size: item[4],
+            Price: item[5],
+            Quantity: item[6],
+          });
+        }
+
+        $.ajax({
+          type: "POST",
+          url: "/billing/create",
+          data: ajax_data,
+          dataType: "json",
+          success: function (data) {
+            data.outputType = jsPDFInvoiceTemplate.OutputType.Save;
+            jsPDFInvoiceTemplate.default(data);
+          },
+          error: function (jqXHR, textStatus, errorThrown) {
+            addAlert(jqXHR.responseText);
+          },
+        });
+      }
+    </script>
+  </body>
+</html>

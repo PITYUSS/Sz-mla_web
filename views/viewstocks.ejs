@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="css/stylesInv.css">
+  <title>PaySmart - Leltár készlet</title>
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;700&display=swap" rel="stylesheet">
+  <link
+  rel="stylesheet"
+  href="https://use.fontawesome.com/releases/v5.14.0/css/all.css"
+  integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc"
+  crossorigin="anonymous">
+  <link rel="icon" href="favicon_io/favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+  <!--Vertical Navbar-->
+  <%- include('./navbar_logged_in') %>
+
+  <!-- Page content -->
+  <div class="main__container">
+    <h1>Leltár készlet</h1>
+
+    <div class="ui four column grid">
+      <div class="row">
+        <div class="column">
+          <h2>Lásd az elemeket:  </h2>
+        </div>
+
+        <div class="column">
+          <select onchange="query()" class="form-select" aria-label="Disabled select example" id="brand"
+            name="selected_brand">
+            <option value="" <% if (brandQuery=="" ) { %>selected<% } %> >Válassz márkát</option>
+            <%  brands.forEach(function (brand){ %>
+              <option value="<%= brand.BrandId %>" <% if (brandQuery == brand.BrandId ) { %>selected<% } %>>
+                <%= brand.BrandName %>
+              </option>
+              <% }); %>
+          </select>
+        </div>
+        <div class="column">
+          <select onchange="query()" class="form-select" aria-label="Disabled select example" id="category"
+            name="selected_category">
+            <option value="" <% if (categoryQuery=="" ) { %>selected<% } %> >Válassz kategóriát </option>
+
+            <%  categories.forEach(function (category){ %>
+              <option value="<%= category.CategoryId %>" <% if (categoryQuery == category.CategoryId ) { %>selected<% } %>>
+                <%= category.CategoryName %>
+              </option>
+              <% }); %>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- end of the search bar  -->
+
+    <div class="ui fluid container">
+      <table class="ui inverted violet table table-bordered">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Név</th>
+            <th>Kategória</th>
+            <th>Márka név</th>
+            <th>Méret</th>
+            <th>Ár</th>
+            <th>Mennyiség</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody class="ui table-bordered">
+          <% stocks.forEach(function(stock){ %>
+            <tr>
+              <td>
+                <%= stock.CustomItemId %>
+              </td>
+              <td>
+                <%= stock.ItemName %>
+              </td>
+              <td>
+                <%= stock.CategoryName %>
+              </td>
+              <td>
+                <%= stock.BrandName %>
+              </td>
+              <td>
+                <%= stock.SizeName %>
+              </td>
+              <td>
+                <%= stock.Price %>
+              </td>
+              <td>
+                <%= stock.Quantity %>
+              </td>
+              <td>
+                <form action="/deletestock" method="POST">
+                  <input type="hidden" name="deleteid" value="<%= stock.ItemId %>">
+                  <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                </form>
+              </td>
+            </tr>
+            <% }); %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Semnatic-UI Scripts -->
+
+  <script>
+    $(function () {
+      // Sidebar toggle behavior
+      $('#sidebarCollapse').on('click', function () {
+        $('#sidebar, #content').toggleClass('active');
+      });
+    });
+
+  </script>
+
+  <script>
+
+    function query() {
+      var brand = document.getElementById("brand").value;
+      var category = document.getElementById("category").value;
+      let url = new URL(window.location.href);
+      let search_params = url.searchParams;
+      search_params.set('brand', brand);
+      search_params.set('category', category);
+
+      window.location.href = url.toString();
+    }
+  </script>
+</body>
+
+</html>

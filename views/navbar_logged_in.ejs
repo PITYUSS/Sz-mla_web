@@ -1,0 +1,42 @@
+<nav class="navbar">
+  <div class="navbar__container">
+    <a href="" id="navbar__logo"> <i class="fas fa-calculator"></i>PaySmart </a>
+    <div class="navbar__toggle" id="mobile-menu">
+      <span class="bar"></span> <span class="bar"></span>
+      <span class="bar"></span>
+    </div>
+    <ul class="navbar__menu">
+      <li class="navbar__item">
+        <a href="/billing" class="navbar__links">Számlázás</a>
+      </li>
+      <li class="navbar__item">
+        <a href="/sales" class="navbar__links">Eladások</a>
+      </li>
+      <li class="navbar__item">
+        <a href="/viewstocks" class="navbar__links">Leltárkészlet</a>
+      </li>
+      <li class="navbar__item">
+        <a href="/stocks" class="navbar__links">Új áruk</a>
+      </li>
+      <li class="navbar__item">
+        <a href="" class="navbar__links">Elemek</a>
+        <ul class="navbar__dropdown">
+          <li><a href="/brands" class="navbar__services--links">
+            <h1>Márka</h1>
+          </a></li>
+          <li><a href="/categories" class="navbar__services--links">
+            <h1>Kategória</h1>
+          </a></li>
+          <li><a href="/sizes" class="navbar__services--links">
+            <h1>Méret</h1>
+          </a></li>
+        </ul>
+      </li>
+      <form action="/logout?_method=DELETE" method="POST">
+        <li class="navbar__btn">
+          <button class="button" type="submit">Kijelenetkezés</button>
+        </li>
+      </form>
+    </ul>
+  </div>
+</nav>
